@@ -1,0 +1,136 @@
+<div class="modal fade" id="customerRewardHistoryModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Customer All Transaction History</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p><b>Customer Name:</b> {{customerName}}</p>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%;">Sr.</th>
+                                            <th>Order Date</th>
+                                            <th style="width: 10%;">Price</th>
+                                            <th style="width: 30%;">Reward Point</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let cust of (customerRewardList); let i = index">
+                                            <td class="text-center">{{i+1}}</td>
+                                            <td>{{cust.orderDate | date}}</td>
+                                            <td class="text-right">{{cust.price}}</td>
+                                            <td class="text-right">{{cust.rewardPoint}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="customerMonthlyRewardModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Customer Last 3 Month Reward History</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p><b>Customer Name:</b> {{customerName}}</p>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%;">Sr.</th>
+                                            <th>Order Date</th>
+                                            <th style="width: 30%;">Reward Point</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let cust of (customerRewardList); let i = index">
+                                            <td class="text-center">{{i+1}}</td>
+                                            <td>{{cust.orderMonthYear}}</td>
+                                            <td class="text-right">{{cust.rewardPoint}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5 class="mt-3 text-right"><b>Total Reward Point:</b> {{totalRewardPoint}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h1 class="m-0">Customer List</h1>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">Sr.</th>
+                                    <th>Customer Name</th>
+                                    <th style="width: 50%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of (customerList); let i = index">
+                                    <td class="text-center">{{i+1}}</td>
+                                    <td>{{customer.customerName}}</td>
+                                    <td class="text-center">
+                                        <a type="button" class="btn btn-primary" href="javascript:void(0);" (click)="getCustomeRewardHistory(customer.customerId, customer.customerName)">
+                                            All Transaction
+                                        </a>
+                                        &nbsp;
+                                        <a type="button" class="btn btn-info" href="javascript:void(0);" (click)="getCustomeMonthlyReward(customer.customerId, customer.customerName)">
+                                            Last 3 Month Reward
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</section>
+<ngx-spinner></ngx-spinner>s
